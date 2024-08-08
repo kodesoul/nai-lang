@@ -7,37 +7,35 @@ target triple = "x86_64-unknown-linux-musl"
 ; Function Attrs: noinline nounwind optnone sspstrong uwtable
 define i32 @main() {
   %1 = alloca i32
-  %2 = alloca i32
-  store i32 0, ptr %1
-  store i32 1, ptr %2
-  br label %3
+  store i32 1, ptr %1
+  br label %2
 
-3:                                                ; preds = %16, %0
-  %4 = load i32, ptr %2
-  %5 = icmp sle i32 %4, 12
-  br i1 %5, label %6, label %17
+2:                                                ; preds = %15, %0
+  %3 = load i32, ptr %1
+  %4 = icmp sle i32 %3, 12
+  br i1 %4, label %5, label %16
 
-6:                                                ; preds = %3
-  %7 = load i32, ptr %2
-  %8 = call i32 (ptr, ...) @printf(ptr @message, i32 %7)
-  br label %9
+5:                                                ; preds = %3
+  %6 = load i32, ptr %1
+  %7 = call i32 (ptr, ...) @printf(ptr @message, i32 %6)
+  br label %8
 
-9:                                                ; preds = %6
-  %10 = load i32, ptr %2
-  %11 = call { i32, i1 } @llvm.sadd.with.overflow.i32(i32 %10, i32 1)
-  %12 = extractvalue { i32, i1 } %11, 0
-  %13 = extractvalue { i32, i1 } %11, 1
-  %14 = xor i1 %13, true
-  br i1 %14, label %16, label %15
+8:                                                ; preds = %6
+  %9 = load i32, ptr %1
+  %10 = call { i32, i1 } @llvm.sadd.with.overflow.i32(i32 %9, i32 1)
+  %11 = extractvalue { i32, i1 } %10, 0
+  %12 = extractvalue { i32, i1 } %10, 1
+  %13 = xor i1 %12, true
+  br i1 %13, label %15, label %14
 
-15:                                               ; preds = %9
+14:                                               ; preds = %9
   unreachable
 
-16:                                               ; preds = %9
-  store i32 %12, ptr %2
-  br label %3
+15:                                               ; preds = %9
+  store i32 %11, ptr %1
+  br label %2
 
-17:                                               ; preds = %3
+16:                                               ; preds = %3
   ret i32 0
 }
 

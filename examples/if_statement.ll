@@ -7,24 +7,22 @@ target triple = "x86_64-unknown-linux-musl"
 ; Function Attrs: noinline nounwind optnone sspstrong uwtable
 define i32 @main() {
   %1 = alloca i32
-  %2 = alloca i32
-  store i32 0, ptr %1
-  store i32 42, ptr %2
-  %3 = load i32, ptr %2
-  %4 = icmp eq i32 %3, 42
-  br i1 %4, label %5, label %6
+  store i32 42, ptr %1
+  %2 = load i32, ptr %1
+  %3 = icmp eq i32 %2, 42
+  br i1 %3, label %4, label %5
+
+4:                                                ; preds = %0
+  store i32 69, ptr %1
+  br label %6
 
 5:                                                ; preds = %0
-  store i32 69, ptr %2
-  br label %7
+  store i32 420, ptr %1
+  br label %6
 
-6:                                                ; preds = %0
-  store i32 420, ptr %2
-  br label %7
-
-7:                                                ; preds = %6, %5
-  %8 = load i32, ptr %2
-  %9 = call i32 (ptr, ...) @printf(ptr @message, i32 %8)
+6:                                                ; preds = %5, %4
+  %7 = load i32, ptr %1
+  %8 = call i32 (ptr, ...) @printf(ptr @message, i32 %7)
   ret i32 0
 }
 
