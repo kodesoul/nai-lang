@@ -5,7 +5,7 @@ target triple = "x86_64-unknown-linux-musl"
 @msg = constant [3 x i8] c"%d\00"
 
 ; Function Attrs: noinline nounwind optnone sspstrong uwtable
-define i32 @factorial(i32 noundef %0) {
+define i32 @factorial(i32 %0) {
   %2 = alloca i32
   %3 = alloca i32
   store i32 %0, ptr %3
@@ -39,7 +39,7 @@ define i32 @factorial(i32 noundef %0) {
   unreachable
 
 19:                                               ; preds = %11
-  %20 = call i32 @factorial(i32 noundef %15)
+  %20 = call i32 @factorial(i32 %15)
   %21 = call { i32, i1 } @llvm.smul.with.overflow.i32(i32 %12, i32 %20)
   %22 = extractvalue { i32, i1 } %21, 0
   %23 = extractvalue { i32, i1 } %21, 1
