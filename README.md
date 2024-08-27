@@ -11,7 +11,7 @@ with c files and the handwritten llvm ir text file
 translations.
 
 LLVM gets really annoying once things get complex 
-so I also recomment checking out [qbe](https://c9x.me/compile/)
+so I also recommend checking out [qbe](https://c9x.me/compile/)
 for easier compiler backends to machine code.
 
 Some of the resources I recommend are: 
